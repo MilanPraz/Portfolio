@@ -1,0 +1,22 @@
+---
+export interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'stone';
+}
+const { href, variant = 'primary' } = Astro.props;
+
+// type LinkStyleType=keyof typeof LinkStyles
+const LinkStyles: Record<string, string> = {
+  primary: 'bg-primary text-primary-foreground',
+  secondary: 'bg-secondary text-foreground ',
+  stone:
+    'bg-accent text-stone-foreground border hover:border-muted-foreground ',
+};
+---
+
+<a
+  href={href}
+  class={` text-xs px-4 py-2  flex gap-2 items-center ${LinkStyles[variant]} capitalize`}
+>
+  <slot />
+</a>

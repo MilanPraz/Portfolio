@@ -1,0 +1,80 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  id: string;
+  data: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    tags?: string[];
+    readTime?: string;
+  };
+}
+
+const { id, data } = Astro.props;
+
+console.log('ddddd', data);
+const formattedDate = data.pubDate.toLocaleDateString('en-US', {
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<a href={`/blog/${id}`}>
+  <article class="group border-b border-border py-6 transition-colors">
+    <!-- Meta row -->
+    <div
+      class="mb-3 flex items-center justify-between text-xs text-muted-foreground"
+    >
+      <span class="flex items-center gap-2 font-mono">
+        <Icon name="calendar" class="h-3 w-3" />
+        {formattedDate}
+      </span>
+
+      {data.readTime && <span class=" font-mono">{data.readTime}</span>}
+    </div>
+
+    <!-- Title -->
+    <h2
+      class="text-base leading-snug
+           text-foreground mb-3
+           group-hover:underline"
+    >
+      {data.title}
+    </h2>
+
+    <!-- Description -->
+    <p
+      class="text-muted-foreground leading-relaxed max-w-4xl font-light text-sm mb-4"
+    >
+      {data.description}
+    </p>
+
+    <!-- Tags -->
+    {
+      data.tags && (
+        <div class="flex flex-wrap gap-2 mb-4">
+          {data.tags.map((tag) => (
+            <span
+              class="rounded bg-muted px-2 py-0.5
+                 text-xs text-muted-foreground font-light"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
+
+    <!-- Read more -->
+    <div
+      class="inline-flex justify-center items-center gap-2
+           text-xs text-muted-foreground
+           transition-colors group-hover:gap-3 font-light"
+    >
+      Read more
+      <Icon name="arrowRight" class="h-3 w-3" />
+    </div>
+  </article>
+</a>

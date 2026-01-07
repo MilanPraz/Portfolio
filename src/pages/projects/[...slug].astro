@@ -1,10 +1,10 @@
 ---
 import Capsule from '@/components/home/Capsule.astro';
-import BlogDetailLayout from '@/layouts/BlogDetailLayout.astro';
+import ProjectDetailLayout from '@/layouts/ProjectDetailLayout.astro';
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection('projects');
   return posts.map((post) => ({
     params: { slug: post.id },
     props: post,
@@ -26,48 +26,12 @@ const relatedBlogs = allBlogs
   .slice(0, 2);
 ---
 
-<BlogDetailLayout {...post.data}>
+<ProjectDetailLayout {...post.data}>
   <article class="py-8 max-w-3xl mx-auto">
     <!-- 🔑 MARKDOWN STYLED HERE -->
     <div class="prose text-muted-foreground font-light">
       <Content />
     </div>
-
-    <!-- footer section 1st tags and then related blogs two -->
-    <footer class="max-w-2xl mx-auto mt-10">
-      <div class="border-t pt-8">
-        <h3
-          class="text-xs mb-4 font-mono text-muted-foreground text-start w-full"
-        >
-          Tags
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          {tags?.map((tag) => <Capsule>{tag}</Capsule>)}
-        </div>
-      </div>
-      <!-- related blogs -->
-      <div class="border-t pt-8 mt-8">
-        <h3
-          class="text-xs mb-4 font-mono text-muted-foreground text-start w-full"
-        >
-          More Articles
-        </h3>
-        <div class="grid grid-cols-2 gap-4">
-          {
-            relatedBlogs?.slice(0, 2)?.map((post) => (
-              <a href={`/blog/${post.id}`} class="w-full border">
-                <div class=" p-4 ">
-                  <h4 class="text-sm font-medium mb-2">{post.data.title}</h4>
-                  <p class="text-xs font-mono text-muted-foreground">
-                    {post.data.readTime} read
-                  </p>
-                </div>
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </footer>
 
     <script is:inline>
       document.querySelectorAll('.prose pre').forEach((pre) => {
@@ -94,4 +58,4 @@ const relatedBlogs = allBlogs
       });
     </script>
   </article>
-</BlogDetailLayout>
+</ProjectDetailLayout>

@@ -1,0 +1,53 @@
+---
+import ContactHandles from './ContactHandles.astro';
+import TitleHeader from './home/TitleHeader.astro';
+export const contactData = {
+  intro:
+    'Always interested in new opportunities, collaborations, and conversations about technology and design.',
+  email: 'mln.praz12@gmail.com',
+  contacts: [
+    {
+      label: 'GitHub',
+      value: '@milanpraz',
+      href: 'https://github.com/MilanPraz',
+    },
+    {
+      label: 'X (Formerly Twitter)',
+      value: '@milanpraz',
+      href: 'https://x.com/milanpraz',
+    },
+    {
+      label: 'Call / Whatsapp',
+      value: '+977 986007404',
+      href: 'tel:+977986007404',
+    },
+    {
+      label: 'LinkedIn',
+      value: '@milan-praz',
+      href: 'https://www.linkedin.com/in/milan-praz-a565ba270',
+    },
+  ],
+};
+---
+
+<section
+  class="h-dvh flex items-end justify-center px-8 transition-colors
+  duration-500"
+>
+  <div class="max-w-3xl mx-auto w-full">
+    <TitleHeader title="Let's Connect" description="ELSEWHERE" />
+
+    <div>
+      <ContactHandles {...contactData} />
+    </div>
+
+    <footer class="pt-40 pb-20">
+      <hr class="bg-foreground/20 h-px my-8" />
+      <div class="mt-20">
+        <p class="text-muted-foreground text-sm">
+          &copy; {new Date().getFullYear()} Milan Praz. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </div>
+</section>

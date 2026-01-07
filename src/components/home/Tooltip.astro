@@ -1,0 +1,48 @@
+---
+interface Props {
+  label: string;
+  class?: string;
+  dataSection: string;
+}
+
+const { label, class: className = '', dataSection } = Astro.props;
+---
+
+<div class={`relative group inline-flex items-center ${className}`}>
+  <!-- Trigger -->
+
+  {
+    dataSection === '0' ? (
+      <button
+        data-section={dataSection}
+        class="nav-dot w-2 h-10 rounded-full transition-all duration-300 bg-foreground scale-125 group-hover:bg-muted-foreground"
+      />
+    ) : (
+      <button
+        data-section={dataSection}
+        class="nav-dot w-2 h-10 rounded-full transition-all duration-300 bg-muted-foreground/50 scale-125 group-hover:bg-muted-foreground"
+      />
+    )
+  }
+
+  <!-- Tooltip -->
+  <div
+    class="pointer-events-none absolute left-6 top-1/2 -translate-y-1/2
+           opacity-0 scale-95
+           transition-all duration-200 ease-out
+           group-hover:opacity-100 group-hover:scale-100"
+  >
+    <div
+      class="relative whitespace-nowrap rounded-md
+             bg-primary text-primary-foreground
+             px-3 py-1.5 text-sm font-medium shadow-lg"
+    >
+      {label}
+
+      <!-- Arrow -->
+      <span
+        class="absolute right-full mr-1 top-1/2 -translate-y-1/2 border-4 border-transparent border-r-primary"
+      ></span>
+    </div>
+  </div>
+</div>

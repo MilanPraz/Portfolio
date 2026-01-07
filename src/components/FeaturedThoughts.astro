@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+import TitleHeader from './home/TitleHeader.astro';
+import ViewMoreBtn from './home/ViewMoreBtn.astro';
+
+const blogs = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<section
+  class="min-h-dvh flex items-center justify-center px-8 transition-colors
+  duration-500"
+>
+  <div class="max-w-3xl mx-auto w-full">
+    <TitleHeader title="Featured Thoughts" description="PERSPECTIVES" />
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {
+        blogs.map((blog) => (
+          <BlogCard
+            title={blog.data.title}
+            pubDate={blog.data.pubDate}
+            readTime={blog.data.readTime as string}
+            description={blog.data.description}
+            id={blog.id}
+          />
+        ))
+      }
+    </section>
+
+    <ViewMoreBtn href="/blog" title="More Blogs" />
+  </div>
+</section>

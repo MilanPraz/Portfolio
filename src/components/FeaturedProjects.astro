@@ -1,0 +1,35 @@
+---
+import ProjectCard from '@/components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import TitleHeader from './home/TitleHeader.astro';
+import ViewMoreBtn from './home/ViewMoreBtn.astro';
+
+const projects = (await getCollection('projects')).slice(0, 3);
+---
+
+<section
+  class="min-h-dvh flex items-center justify-center px-8 transition-colors
+  duration-500"
+>
+  <div class="max-w-3xl mx-auto w-full">
+    <TitleHeader title="Featured Projects" description="SHOWCASE" />
+
+    <div class="space-y-12">
+      {
+        projects
+          .slice(0, 3)
+          .map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              year={project.data.pubDate.getFullYear()}
+              description={project.data.description}
+              tech={project.data.stacks as string[]}
+              href={`/projects/${project.id}`}
+            />
+          ))
+      }
+    </div>
+
+    <ViewMoreBtn href="/projects" />
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import ProjectRow from '@/components/projects/ProjectRow.astro';
+import ProjectsLayout from '@/layouts/ProjectsLayout.astro';
+import { getCollection } from 'astro:content';
+
+const blogs = await getCollection('projects');
+console.log('all projects:', blogs);
+
+// const posts = (await getCollection('blog')).sort(
+//   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+// );
+---
+
+<ProjectsLayout>
+  <main class="">
+    <section class="max-w-3xl mx-auto">
+      <ul class="">
+        {blogs.map((post) => <ProjectRow id={post.id} data={post.data} />)}
+      </ul>
+    </section>
+  </main>
+</ProjectsLayout>

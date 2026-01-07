@@ -1,0 +1,122 @@
+---
+import { AstroFont } from 'astro-font';
+import { Icon } from 'astro-icon/components';
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import type { CollectionEntry } from 'astro:content';
+import Capsule from '@/components/home/Capsule.astro';
+import Link from '@/components/home/Link.astro';
+
+type Props = CollectionEntry<'projects'>['data'];
+
+const { title, pubDate, stacks, description, liveURL, githubURL } = Astro.props;
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+
+    <AstroFont
+      config={[
+        {
+          name: 'Vietnam',
+          src: [],
+          googleFontsURL:
+            'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap',
+          preload: true,
+          display: 'swap',
+          selector: 'body',
+          fallback: 'sans-serif',
+        },
+      ]}
+    />
+  </head>
+
+  <body class="">
+    <!-- THEME SCRIPT (CLIENT-SIDE ONLY) -->
+    <script is:inline>
+      const root = document.documentElement;
+      const stored = localStorage.getItem('theme');
+
+      if (stored === 'dark') {
+        root.classList.add('dark');
+      }
+
+      window.toggleTheme = () => {
+        root.classList.toggle('dark');
+        localStorage.setItem(
+          'theme',
+          root.classList.contains('dark') ? 'dark' : 'light'
+        );
+      };
+
+      window.goBack = () => {
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.href = '/';
+        }
+      };
+    </script>
+
+    <!-- Toggle button (example) -->
+    <section class="max-w-2xl mx-auto space-y-8">
+      <div class="pt-10 flex items-center justify-between">
+        <button
+          onclick="goBack()"
+          class="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer group/back"
+        >
+          <Icon
+            name="arrowRight"
+            class="rotate-180 group-hover/back:rotate-0 transition-transform duration-300"
+          />
+          Back to projects
+        </button>
+        <button
+          onclick="
+          toggleTheme()"
+          class="top-2 right-2 border px-3 py-3 rounded-full text-sm"
+        >
+          <Icon name="sun" />
+        </button>
+      </div>
+      <div>
+        <h2 class="text-5xl font-thin mb-4">{title}</h2>
+        <p class="text-muted-foreground text-sm">
+          {description}
+        </p>
+
+        <!-- project links -->
+        <div class="flex items-center gap-4 mt-6">
+          <Link href={liveURL as string} variant="primary">
+            Live Demo
+            <Icon name="Link" />
+          </Link>
+          <Link href={githubURL as string} variant="secondary">
+            Source Code
+            <Icon name="github" />
+          </Link>
+        </div>
+        <div
+          class="flex flex-col items-start text-xs text-muted-foreground gap-4 mt-6"
+        >
+          <h2 class="text-xl font-thin">Technology Stack</h2>
+          <div class="flex flex-wrap gap-2 items-start">
+            {stacks?.map((stack) => <Capsule>{stack}</Capsule>)}
+          </div>
+        </div>
+        <!-- <p class="text-muted-foreground text-sm font-light"></p> -->
+      </div>
+    </section>
+
+    <!-- Background wrapper -->
+    <div class="bg-background max-w-2xl mx-auto min-h-screen">
+      <slot />
+    </div>
+  </body>
+</html>

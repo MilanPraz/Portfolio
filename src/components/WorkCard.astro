@@ -1,0 +1,57 @@
+---
+import { Icon } from 'astro-icon/components';
+import Capsule from './home/Capsule.astro';
+
+const { title, description, date, techStack, details } = Astro.props;
+---
+
+<div class="pt-8">
+  <div class="flex flex-col md:flex-row gap-8 mb-4">
+    <!-- Date -->
+    <div class="flex-1">
+      <span class="text-muted-foreground font-semibold text-xl">{date}</span>
+    </div>
+
+    <!-- Content -->
+    <div class="flex-[3]">
+      <h3 class="text-xl mb-2">{title}</h3>
+      <p class="text-muted-foreground mb-4">{description}</p>
+
+      <div class="flex flex-wrap gap-2 mb-4">
+        {techStack.map((tech: any) => <Capsule>{tech}</Capsule>)}
+      </div>
+
+      <!-- ✅ PURE SERVER-SIDE TOGGLE -->
+
+      <details class="group">
+        <summary
+          class="flex cursor-pointer items-center gap-2 text-xs text-muted-foreground list-none select-none"
+        >
+          Details
+          <Icon
+            name="arrowDown"
+            class="transition-transform duration-300 group-open:rotate-180"
+          />
+        </summary>
+
+        <!-- Animated details -->
+        <div
+          class="mt-4 space-y-2 overflow-hidden
+                 max-h-0 opacity-0
+                 transition-all duration-300 ease-in-out
+                 group-open:max-h-150
+                 group-open:opacity-100"
+        >
+          {
+            details.map((detail: any) => (
+              <p class="text-muted-foreground flex items-baseline gap-2 text-sm">
+                <Icon name="circle" class="shrink-0" size={10} />
+                {detail}
+              </p>
+            ))
+          }
+        </div>
+      </details>
+    </div>
+  </div>
+</div>

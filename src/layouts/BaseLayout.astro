@@ -1,0 +1,63 @@
+---
+import { AstroFont } from 'astro-font';
+import { Icon } from 'astro-icon/components';
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const { bgImage, bgClass = '' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+
+    <AstroFont
+      config={[
+        {
+          name: 'Vietnam',
+          src: [],
+          googleFontsURL:
+            'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap',
+          preload: true,
+          display: 'swap',
+          selector: 'body',
+          fallback: 'sans-serif',
+        },
+      ]}
+    />
+  </head>
+
+  <body class={`  ${bgClass}`}>
+    <!-- THEME SCRIPT (CLIENT-SIDE ONLY) -->
+    <script is:inline>
+      const root = document.documentElement;
+      const stored = localStorage.getItem('theme');
+
+      if (stored === 'dark') {
+        root.classList.add('dark');
+      }
+
+      window.toggleTheme = () => {
+        root.classList.toggle('dark');
+        localStorage.setItem(
+          'theme',
+          root.classList.contains('dark') ? 'dark' : 'light'
+        );
+      };
+    </script>
+
+    <!-- Toggle button (example) -->
+    <button
+      onclick="toggleTheme()"
+      class="fixed top-2 right-2 border px-3 py-3 rounded-full text-sm"
+    >
+      <Icon name="sun" />
+    </button>
+
+    <!-- Background wrapper -->
+    <div class="bg-background min-h-screen">
+      <slot />
+    </div>
+  </body>
+</html>

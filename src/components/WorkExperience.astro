@@ -1,0 +1,78 @@
+---
+import TitleHeader from './home/TitleHeader.astro';
+import WorkCard from './WorkCard.astro';
+
+const experiences = [
+  {
+    title: 'Frontend Engineer',
+    company: 'Beeaver Technology Pvt. Ltd.',
+    location: 'Kumaripati, Lalitpur, Nepal',
+    date: 'Present',
+    techStack: [
+      'Next.js',
+      'TypeScript',
+      'React',
+      'Tailwind CSS',
+      'Astro',
+      'Strapi',
+    ],
+    details: [
+      'Working on XSite, an in-house website builder platform, contributing since Version 1 and currently developing Version 2 with improved scalability and performance.',
+      'Built reusable, component-based UI systems enabling dynamic page construction, live preview editing, and theme management.',
+      'Optimized frontend performance through code-splitting, efficient state management, and improved rendering strategies.',
+      'Collaborated closely with backend, product, and design teams to deliver scalable features aligned with business goals.',
+      'Maintained clean, well-structured, and reusable codebases following modern frontend best practices.',
+    ],
+  },
+
+  {
+    title: 'Full Stack Developer Intern',
+    company: 'Metalogic Software',
+    location: 'Lalitpur, Nepal',
+    date: 'Apr 2024',
+    techStack: [
+      'React',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'Next.js',
+      'Tailwind CSS',
+    ],
+    details: [
+      'Developed full-stack web applications including a school CMS and an insurance agent platform (Avikarta), handling both frontend and backend responsibilities.',
+      'Implemented server-side rendering (SSR) and backend integrations to improve performance and SEO.',
+      'Built dynamic and interactive user interfaces using modern frontend libraries and animation tools.',
+      'Designed and consumed RESTful APIs for authentication, data management, and business workflows.',
+      'Worked in a team environment, participating in code reviews and feature planning sessions.',
+    ],
+  },
+
+  {
+    title: 'Frontend Developer Intern',
+    company: 'Mindrisers Technology',
+    location: 'Bagbazar, Kathmandu, Nepal',
+    date: 'Jan 2024',
+    techStack: ['HTML', 'CSS', 'JavaScript', 'React', 'Framer Motion'],
+    details: [
+      'Built the company’s first interactive website using Next.js and Framer Motion, enabling smooth animations and modern UI experiences.',
+      'Converted UI/UX designs into responsive, production-ready frontend components.',
+      'Collaborated on a TypeScript-based e-commerce platform for tea products, contributing to UI components and frontend logic.',
+      'Improved website responsiveness, accessibility, and performance through clean frontend practices.',
+      'Gained hands-on experience with real-world frontend workflows and team collaboration.',
+    ],
+  },
+];
+---
+
+<section
+  class="min-h-dvh flex items-center justify-center px-8 transition-colors
+  duration-500"
+>
+  <div class="max-w-3xl mx-auto w-full">
+    <TitleHeader title="Selected Work" description="2024 - 2025" />
+
+    <div class="space-y-12">
+      {experiences.map((exp) => <WorkCard {...exp} />)}
+    </div>
+  </div>
+</section>

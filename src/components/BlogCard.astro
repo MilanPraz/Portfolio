@@ -1,0 +1,65 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title: string;
+  pubDate: Date;
+  readTime: string;
+  description: string;
+  href?: string;
+  id: string;
+}
+
+const { title, pubDate, readTime, description, id } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<a
+  href={`/blog/${id}`}
+  class="group block rounded-2xl border border-border
+         bg-background p-6
+         transition-all duration-300
+         hover:border-muted-foreground/40
+         hover:bg-muted/40"
+>
+  <!-- Meta -->
+  <div
+    class="flex items-center justify-between text-xs text-muted-foreground mb-4"
+  >
+    <span>{formattedDate}</span>
+    <span>{readTime}</span>
+  </div>
+
+  <!-- Title -->
+  <h3
+    class="text-lg font-medium text-foreground leading-snug mb-3
+           line-clamp-2"
+  >
+    {title}
+  </h3>
+
+  <!-- Description -->
+  <p
+    class="text-sm text-muted-foreground leading-relaxed mb-6
+           line-clamp-3"
+  >
+    {description}
+  </p>
+
+  <!-- Footer -->
+  <div
+    class="flex items-center gap-1 text-sm text-muted-foreground
+           transition-colors duration-300
+           group-hover:text-foreground"
+  >
+    Read more
+    <Icon
+      name="arrowRight"
+      class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+    />
+  </div>
+</a>
