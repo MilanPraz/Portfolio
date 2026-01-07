@@ -25,3 +25,14 @@ jobs:
 
       - name: Build Project
         run: pnpm build
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{secrets.VERCEL_TOKEN}}
+          vercel-organization-id: ${{secrets.VERCEL_ORGANIZATION_ID}}
+          vercel-project-id: ${{secrets.VERCEL_PROJECT_ID}}
+          vercel-args: '--prod'
