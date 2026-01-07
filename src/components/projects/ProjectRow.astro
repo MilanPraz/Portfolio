@@ -13,7 +13,6 @@ interface Props {
 
 const { id, data } = Astro.props;
 
-console.log('ddddd', data);
 const formattedDate = data.pubDate.toLocaleDateString('en-US', {
   month: 'long',
   year: 'numeric',

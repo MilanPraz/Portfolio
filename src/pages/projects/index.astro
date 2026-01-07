@@ -4,11 +4,6 @@ import ProjectsLayout from '@/layouts/ProjectsLayout.astro';
 import { getCollection } from 'astro:content';
 
 const blogs = await getCollection('projects');
-console.log('all projects:', blogs);
-
-// const posts = (await getCollection('blog')).sort(
-//   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-// );
 ---
 
 <ProjectsLayout>

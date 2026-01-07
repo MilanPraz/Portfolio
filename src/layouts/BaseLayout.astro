@@ -3,8 +3,6 @@ import { AstroFont } from 'astro-font';
 import { Icon } from 'astro-icon/components';
 import BaseHead from '../components/BaseHead.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-
-const { bgImage, bgClass = '' } = Astro.props;
 ---
 
 <!doctype html>
@@ -28,7 +26,7 @@ const { bgImage, bgClass = '' } = Astro.props;
     />
   </head>
 
-  <body class={`  ${bgClass}`}>
+  <body>
     <!-- THEME SCRIPT (CLIENT-SIDE ONLY) -->
     <script is:inline>
       const root = document.documentElement;

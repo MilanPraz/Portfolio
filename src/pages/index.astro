@@ -9,7 +9,7 @@ import Tooltip from '@/components/home/Tooltip.astro';
 ---
 
 <BaseLayout>
-  <main class="px-4 sm:px-6">
+  <main class="px-6 sm:px-8">
     <!-- Dot Navigation -->
     <div
       id="dot-nav"
@@ -41,17 +41,14 @@ import Tooltip from '@/components/home/Tooltip.astro';
   <script is:inline>
     const sections = document.querySelectorAll('section[id^="section-"]');
     const dots = document.querySelectorAll('.nav-dot');
-    console.log('sections', sections);
 
     function updateActiveDot() {
       //1st i need mouse scroll position
       const mouseScrollPosition = window.scrollY + window.innerHeight / 2;
-      console.log('mouseScrollPosition', mouseScrollPosition);
 
       sections.forEach((section, index) => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight; //yo chahi section ko height ho
-        console.log('offsetheight', sectionHeight);
         // 0 sectionTop ko case ma
         // 1 sectionTop ko case ma  -> 0 section of dot in white xa to solved
         // 2 sectionTop ko case ma
@@ -68,33 +65,6 @@ import Tooltip from '@/components/home/Tooltip.astro';
         }
       });
     }
-    // function updateActiveDot() {
-    //   const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-    //   sections.forEach((section, index) => {
-    //     const sectionTop = section.offsetTop;
-    //     const sectionHeight = section.offsetHeight;
-
-    //     console.log('sectionTop', sectionTop, sectionHeight);
-    //     console.log('scrollPosition-------------', scrollPosition);
-    //     if (
-    //       scrollPosition >= sectionTop &&
-    //       scrollPosition < sectionTop + sectionHeight
-    //     ) {
-    //       // Update dots
-    //       dots.forEach((dot, dotIndex) => {
-    //         if (dotIndex === index) {
-    //           console.log('oka');
-    //           dot.classList.add('bg-white', 'scale-125');
-    //           dot.classList.remove('bg-gray-600');
-    //         } else {
-    //           dot.classList.remove('bg-white', 'scale-125');
-    //           dot.classList.add('bg-gray-600');
-    //         }
-    //       });
-    //     }
-    //   });
-    // }
 
     function scrollToSection(index) {
       sections[index]?.scrollIntoView({ behavior: 'smooth' });
