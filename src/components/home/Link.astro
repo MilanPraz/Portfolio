@@ -2,8 +2,9 @@
 export interface Props {
   href: string;
   variant?: 'primary' | 'secondary' | 'stone';
+  ariaLabel?: string;
 }
-const { href, variant = 'primary' } = Astro.props;
+const { href, variant = 'primary', ariaLabel = 'button' } = Astro.props;
 
 // type LinkStyleType=keyof typeof LinkStyles
 const LinkStyles: Record<string, string> = {
@@ -16,6 +17,9 @@ const LinkStyles: Record<string, string> = {
 
 <a
   href={href}
+  target="_blank"
+  aria-label={ariaLabel}
+  rel="noopener noreferrer"
   class={` text-xs px-4 py-2  flex gap-2 items-center ${LinkStyles[variant]} capitalize`}
 >
   <slot />

@@ -7,7 +7,8 @@ export interface Props {
 const { title, link, className } = Astro.props;
 ---
 
-<div
+<button
+  aria-label={title}
   class={`text-xs font-mono text-muted-foreground px-4 py-1 bg-secondary border-dashed border hover:border-muted-foreground rounded-full ${className}`}
 >
   {
@@ -21,4 +22,4 @@ const { title, link, className } = Astro.props;
       </span>
     )
   }
-</div>
+</button>

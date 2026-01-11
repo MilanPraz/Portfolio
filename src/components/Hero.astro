@@ -56,21 +56,21 @@ const techStacks = [
 
       <div class="flex items-center gap-4">
         <TooltipWrapper label="resume">
-          <Link href="/resume" variant="primary">
+          <Link href="/resume" variant="primary" ariaLabel="resume link">
             <Icon name="doc" size={18} />
             resume
           </Link>
         </TooltipWrapper>
 
         <TooltipWrapper label="projects">
-          <Link href="/projects" variant="secondary">
-            <Icon name="gi" size={18} class={'text-white fill-white'} />
+          <Link href="/projects" variant="secondary" ariaLabel="projects link">
+            <Icon name="gi" size={18} />
             projects</Link
           >
         </TooltipWrapper>
 
         <TooltipWrapper label="read blogs">
-          <Link href="/blog" variant="stone">
+          <Link href="/blog" variant="stone" ariaLabel="blog link">
             <Icon name="blogs" size={18} />
             read blogs</Link
           >

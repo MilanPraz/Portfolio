@@ -26,6 +26,7 @@ const { intro, email, contacts } = Astro.props;
 
       <a
         href={`mailto:${email}`}
+        aria-label={`Send email to ${email}`}
         class="inline-flex items-center gap-2 text-foreground text-lg
                hover:underline"
       >

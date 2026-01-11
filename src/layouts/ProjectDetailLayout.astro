@@ -9,11 +9,11 @@ import Link from '@/components/home/Link.astro';
 
 type Props = CollectionEntry<'projects'>['data'];
 
-const { title, pubDate, stacks, description, liveURL, githubURL } = Astro.props;
-const formattedDate = pubDate.toLocaleDateString('en-US', {
-  month: 'long',
-  year: 'numeric',
-});
+const { title, stacks, description, liveURL, githubURL } = Astro.props;
+// const formattedDate = pubDate.toLocaleDateString('en-US', {
+//   month: 'long',
+//   year: 'numeric',
+// });
 ---
 
 <!doctype html>
@@ -93,13 +93,21 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
 
         <!-- project links -->
         <div class="flex items-center gap-4 mt-6">
-          <Link href={liveURL as string} variant="primary">
+          <Link
+            href={liveURL as string}
+            variant="primary"
+            ariaLabel="live demo link"
+          >
             Live Demo
             <Icon name="Link" />
           </Link>
-          <Link href={githubURL as string} variant="secondary">
+          <Link
+            href={githubURL as string}
+            variant="secondary"
+            ariaLabel="github repository link  "
+          >
             Source Code
-            <Icon name="github" />
+            <Icon name="gi" />
           </Link>
         </div>
         <div
