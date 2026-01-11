@@ -1,5 +1,6 @@
 ---
 import Capsule from './home/Capsule.astro';
+import CapsuleLink from './home/CapsuleLink.astro';
 
 interface ContactItem {
   label: string;
@@ -39,13 +40,13 @@ const { intro, email, contacts } = Astro.props;
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {
         contacts.map((item) => (
-          <Capsule
+          <CapsuleLink
             link={item.href ?? '#'}
             className="group rounded-xl border border-border bg-background p-4 transition-all duration-300 hover:bg-muted/40 hover:border-muted-foreground/40"
           >
             <p class="text-sm text-foreground font-medium">{item.label}</p>
             <p class="text-sm text-muted-foreground mt-1">{item.value}</p>
-          </Capsule>
+          </CapsuleLink>
         ))
       }
     </div>
