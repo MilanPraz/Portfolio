@@ -7,7 +7,8 @@ const { href = '#', title = 'View All Projects' } = Astro.props;
 <div class="grid place-items-center">
   <button
     aria-label={title}
-    class="mt-12 block w-fit rounded-md border cursor-pointer border-border text-xs bg-secondary px-4 py-2 text-center font-medium text-foreground transition-colors duration-300 hover:bg-muted/40 hover:border-muted-foreground/30"
+    class="mt-12 block min-h-11
+ w-fit rounded-md border cursor-pointer border-border text-xs bg-secondary px-4 text-center font-medium text-foreground transition-colors duration-300 hover:bg-muted/40 hover:border-muted-foreground/30"
   >
     <a href={href}>{title}</a>
 
