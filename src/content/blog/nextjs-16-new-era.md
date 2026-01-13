@@ -176,7 +176,7 @@ Why this change matters
 Note:
 middleware.ts is still available for Edge runtime use cases, but it is deprecated and will be removed in a future version.
 
-# Final Thoughts
+# My Thoughts
 
 Next.js 16 represents a refined and confident step forward.
 
